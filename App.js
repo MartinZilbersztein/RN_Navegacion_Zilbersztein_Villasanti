@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
+import { useState } from 'react';
 import { Button, TextInput, Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -8,17 +9,26 @@ import { Ionicons } from '@expo/vector-icons';
 
 //STACK 1
 const HomeScreen1 = () =>{
+  const [texto,setTexto] = useState();
   const navigation = useNavigation();
   return(
-    <View style={styles.view}>
-      <Text>hola</Text>
-      <Button title="Ir A ScreenA2" onPress={() => navigation.navigate('ScreenA2')} />
+    <View style={[styles.homeView]}>
+      <Image source={require('./assets/graphicDesign.jpg')} style={{width:300, height:200, marginBottom:40, marginTop:40}}/>
+      <Text>Hablale a Pepito</Text>
+      <TextInput onChange={setTexto}placeholder="Ingrese un texto" style={[styles.input, {margin: 5}]}/> 
+      <TouchableOpacity title="Enviar" style={styles.button} onPress={() => navigation.navigate('Home2', {sendtexto: texto})} >
+        <Text style={styles.textButton}>Enviar</Text>
+      </TouchableOpacity>
     </View>
   );
 }
 
-const HomeScreen2 = ()=>{
-
+const HomeScreen2 = ({ sendTexto})=>{
+  return(
+    <View>
+      <Text>{sendtexto}</Text>
+    </View>
+  );
 }
 //STACK 2
 const BScreen1 = ()=>{
@@ -47,54 +57,60 @@ const CStack = createNativeStackNavigator();
 const DStack = createNativeStackNavigator();
 
 const HomeStackNavigator = () => {
-  <HomeStack.Navigator>
-    <HomeStack.Screen name="Home1" component={HomeScreen1} />
-    <HomeStack.Screen name="Home2" component={HomeScreen2} />
-  </HomeStack.Navigator>
+  return(
+    <HomeStack.Navigator>
+      <HomeStack.Screen name="Home1" component={HomeScreen1} />
+      <HomeStack.Screen name="Home2" component={HomeScreen2} />
+    </HomeStack.Navigator>
+  );
 }
 
 const BStackNavigator = ()=>{
-  <BStack.Navigator>
-    <BStack.Screen name="B1" component={BScreen1}/> 
-    <BStack.Screen name="B2" component={BScreen2}/>
-  </BStack.Navigator>
+  return(
+    <BStack.Navigator>
+      <BStack.Screen name="B1" component={BScreen1}/> 
+      <BStack.Screen name="B2" component={BScreen2}/>
+    </BStack.Navigator>
+  );
 }
 
 const CStackNavigator = () =>{
-  <CStack.Navigator>
-    <CStack.Screen name="C1" component={CScreen1}/>
-    <CStack.Screen name="C2" component={CScreen2}/>
-  </CStack.Navigator>
+  return(
+    <CStack.Navigator>
+      <CStack.Screen name="C1" component={CScreen1}/>
+      <CStack.Screen name="C2" component={CScreen2}/>
+    </CStack.Navigator>
+  );
 }
 
 const DStackNavigator = () =>{
-  <DStack.Navigator>
-    <DStack.Screen name="D1" component={DScreen1}/>
-    <DStack.Screen name="D2" component={DScreen2}/>
-  </DStack.Navigator>
+  return(
+    <DStack.Navigator>
+      <DStack.Screen name="D1" component={DScreen1}/>
+      <DStack.Screen name="D2" component={DScreen2}/>
+    </DStack.Navigator>
+  );
 }
 const Tab = createBottomTabNavigator();
 const TabNavigation = () =>{
-  <Tab.Navigator>
-    <Tab.Screen name="Home" component={HomeStackNavigator}/>
-    <Tab.Screen name="BStack" component={BStackNavigator}/>
-    <Tab.Screen name="CStack" component={CStackNavigator}/>
-    <Tab.Screen name="DStack" component={DStackNavigator}/>
-  </Tab.Navigator>
+  return(
+    <Tab.Navigator>
+      <Tab.Screen name="Home" component={HomeStackNavigator}/>
+      <Tab.Screen name="BStack" component={BStackNavigator}/>
+      <Tab.Screen name="CStack" component={CStackNavigator}/>
+      <Tab.Screen name="DStack" component={DStackNavigator}/>
+    </Tab.Navigator>
+  );
 }
 
 
 export default function App() {
   return (
-    <View style={[styles.container, styles.view]}>
-      {/*<NavigationContainer>
+    <View style={styles.container}>
+      <NavigationContainer >
         <TabNavigation />
-      </NavigationContainer>*/}
-        <Text>hola</Text>
-        <Image source={require('./assets/graphicDesign.jpg')}/>
-        <Button title="Ir A ScreenA2" onPress={() => navigation.navigate('ScreenA2')} />
+      </NavigationContainer>
     </View>
-
   );
 }
 
@@ -102,10 +118,36 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
-  view:{
-    backgroundColor:'black' 
+  homeView:{
+    backgroundColor:'cyan',
+    height:'100%',
+    alignItems: 'center'
+  },
+  input:{
+    backgroundColor:'white',
+    borderRadius:'5px',
+    borderBottomWidth : 1.0,
+    borderTopWidth:1.0,
+    borderLeftWidth:1.0,
+    borderRightWidth:1.0,
+    padding:'2.5px'
+  },
+  button:{
+    marginTop: 10,
+    backgroundColor:'green',
+    width:'43%',
+    height: '4%',
+    justifyContent:'center',
+    borderRadius:5,
+    borderBottomWidth : 1.0,
+    borderTopWidth:1.0,
+    borderLeftWidth:1.0,
+    borderRightWidth:1.0,
+  },
+  textButton:{
+    color:'white',
+    textAlign: 'center'
   }
 });
