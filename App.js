@@ -15,18 +15,18 @@ const HomeScreen1 = () =>{
     <View style={[styles.homeView]}>
       <Image source={require('./assets/graphicDesign.jpg')} style={{width:300, height:200, marginBottom:40, marginTop:40}}/>
       <Text>Hablale a Pepito</Text>
-      <TextInput onChange={setTexto}placeholder="Ingrese un texto" style={[styles.input, {margin: 5}]}/> 
-      <TouchableOpacity title="Enviar" style={styles.button} onPress={() => navigation.navigate('Home2', {sendtexto: texto})} >
+      <TextInput onChange={setTexto} placeholder="Ingrese un texto" style={[styles.input, {margin: 5}]}/> 
+      <TouchableOpacity title="Enviar" style={styles.button} onPress={() => navigation.navigate('Home2', {sendTexto: texto})} >
         <Text style={styles.textButton}>Enviar</Text>
       </TouchableOpacity>
     </View>
   );
 }
 
-const HomeScreen2 = ({ sendTexto})=>{
+const HomeScreen2 = ({ route })=>{
   return(
     <View>
-      <Text>{sendtexto}</Text>
+      <Text>{route.sendTexto}</Text>
     </View>
   );
 }
