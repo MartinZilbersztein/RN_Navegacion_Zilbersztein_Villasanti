@@ -9,13 +9,16 @@ import { Ionicons } from '@expo/vector-icons';
 
 //STACK 1
 const HomeScreen1 = () =>{
-  const [texto,setTexto] = useState();
   const navigation = useNavigation();
+  const [texto, setTexto] = useState();
+  const update = (e) =>{
+    setTexto(e.nativeEvent.text);
+  }
   return(
     <View style={[styles.homeView]}>
       <Image source={require('./assets/graphicDesign.jpg')} style={{width:300, height:200, marginBottom:40, marginTop:40}}/>
       <Text>Hablale a Pepito</Text>
-      <TextInput onChange={setTexto} placeholder="Ingrese un texto" style={[styles.input, {margin: 5}]}/> 
+      <TextInput onChange={update} placeholder="Ingrese un texto" style={[styles.input, {margin: 5}]}/> 
       <TouchableOpacity title="Enviar" style={styles.button} onPress={() => navigation.navigate('Home2', {sendTexto: texto})} >
         <Text style={styles.textButton}>Enviar</Text>
       </TouchableOpacity>
@@ -23,19 +26,23 @@ const HomeScreen1 = () =>{
   );
 }
 
-const HomeScreen2 = ({ route })=>{
+const HomeScreen2 = ({route})=>{
+  const navigation = useNavigation();
   return(
-    <View>
-      <Text>{route.sendTexto}</Text>
+    <View style={[styles.homeView]}>
+      <Text style={{marginTop:250, fontSize:30}}>Hola, {route.params.sendTexto}!</Text>
     </View>
   );
 }
 //STACK 2
 const BScreen1 = ()=>{
+  return (
+    <View style={[styles.screen1]}>
 
+    </View>
+  );
 } 
 const BScreen2 = () =>{
-
 }
 //STACK 3
 const CScreen1 = ()=>{
@@ -127,7 +134,7 @@ const styles = StyleSheet.create({
   },
   input:{
     backgroundColor:'white',
-    borderRadius:'5px',
+    borderRadius:5,
     borderBottomWidth : 1.0,
     borderTopWidth:1.0,
     borderLeftWidth:1.0,
@@ -149,5 +156,8 @@ const styles = StyleSheet.create({
   textButton:{
     color:'white',
     textAlign: 'center'
+  },
+  screen1:{
+    backgroundColor: 'black'
   }
 });
