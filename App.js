@@ -31,32 +31,76 @@ const HomeScreen2 = ({route})=>{
   return(
     <View style={[styles.homeView]}>
       <Text style={{marginTop:250, fontSize:30}}>Hola, {route.params.sendTexto}!</Text>
+      <TouchableOpacity title="Enviar" style={styles.button} onPress={() => navigation.navigate('Home1')} >
+        <Text style={styles.textButton}>Volver a página anterior</Text>
+      </TouchableOpacity>
     </View>
   );
 }
 //STACK 2
 const BScreen1 = ()=>{
+  const navigation = useNavigation();
   return (
     <View style={[styles.screen1]}>
-
+      <TouchableOpacity title="Enviar" style={styles.button} onPress={() => navigation.navigate('B2')} >
+        <Text style={styles.textButton}>Cambiar de vista</Text>
+      </TouchableOpacity>
     </View>
   );
 } 
 const BScreen2 = () =>{
-}
+  const navigation = useNavigation();
+  return (
+    <View style={[styles.screen1]}>
+      <TouchableOpacity title="Enviar" style={styles.button} onPress={() => navigation.navigate('B1')} >
+        <Text style={styles.textButton}>Volver a la vista anterior</Text>
+      </TouchableOpacity>
+    </View>
+  );
+} 
+
 //STACK 3
 const CScreen1 = ()=>{
+  const navigation = useNavigation();
+  return (
+    <View style={[styles.screen2]}>
+      <TouchableOpacity title="Enviar" style={styles.button} onPress={() => navigation.navigate('C2')} >
+        <Text style={styles.textButton}>Cambiar de vista</Text>
+      </TouchableOpacity>
+    </View>
+  );
+} 
 
-}
 const CScreen2 = () =>{
-
+  const navigation = useNavigation();
+  return (
+    <View style={[styles.screen2]}>
+      <TouchableOpacity title="Enviar" style={styles.button} onPress={() => navigation.navigate('C1')} >
+        <Text style={styles.textButton}>Volver a la vista anterior</Text>
+      </TouchableOpacity>
+    </View>
+  );
 }
 //STACK 4
 const DScreen1 = () =>{
-
+  const navigation = useNavigation();
+  return (
+    <View style={[styles.screen3]}>
+      <TouchableOpacity title="Enviar" style={styles.button} onPress={() => navigation.navigate('D2')} >
+        <Text style={styles.textButton}>Cambiar de vista</Text>
+      </TouchableOpacity>
+    </View>
+  );
 }
 const DScreen2 = () =>{
-
+  const navigation = useNavigation();
+  return (
+    <View style={[styles.screen3]}>
+      <TouchableOpacity title="Enviar" style={styles.button} onPress={() => navigation.navigate('D1')} >
+        <Text style={styles.textButton}>Volver a la vista anterior</Text>
+      </TouchableOpacity>
+    </View>
+  );
 }
 const HomeStack = createNativeStackNavigator();
 const BStack = createNativeStackNavigator();
@@ -133,6 +177,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   input:{
+    width:100,
     backgroundColor:'white',
     borderRadius:5,
     borderBottomWidth : 1.0,
@@ -147,6 +192,7 @@ const styles = StyleSheet.create({
     width:'43%',
     height: '4%',
     justifyContent:'center',
+    alignItems:'center',
     borderRadius:5,
     borderBottomWidth : 1.0,
     borderTopWidth:1.0,
@@ -158,6 +204,21 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   screen1:{
-    backgroundColor: 'black'
+    backgroundColor: 'blue',
+    height:'100%',
+    alignItems:'center',
+    justifyContent:'center'
+  },
+  screen2:{
+    backgroundColor: 'yellow',
+    height:'100%',
+    alignItems:'center',
+    justifyContent:'center'
+  },
+  screen3:{
+    backgroundColor: 'red',
+    height:'100%',
+    alignItems:'center',
+    justifyContent:'center'
   }
 });
