@@ -6,6 +6,9 @@ import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons';
+import AntDesign from '@expo/vector-icons/AntDesign';
+
+
 
 //STACK 1
 const HomeScreen1 = () =>{
@@ -153,10 +156,26 @@ const Tab = createBottomTabNavigator();
 const TabNavigation = () =>{
   return(
     <Tab.Navigator>
-      <Tab.Screen name="Home" component={HomeStackNavigator}/>
-      <Tab.Screen name="BStack" component={BStackNavigator}/>
-      <Tab.Screen name="CStack" component={CStackNavigator}/>
-      <Tab.Screen name="DStack" component={DStackNavigator}/>
+      <Tab.Screen name="Home" component={HomeStackNavigator} options={{
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="person" size={24} color={color} />
+           ),
+        }}/>
+      <Tab.Screen name="BStack" component={BStackNavigator} options={{
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="archive-sharp" size={24} color={color} />
+           ),
+        }}/>
+      <Tab.Screen name="CStack" component={CStackNavigator} options={{
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="analytics" size={24} color={color} />
+           ),
+        }}/>
+      <Tab.Screen name="DStack" component={DStackNavigator} options={{
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="albums-outline" size={24} color={color} />
+           ),
+        }}/>
     </Tab.Navigator>
   );
 }
