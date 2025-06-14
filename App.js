@@ -6,8 +6,6 @@ import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons';
-import AntDesign from '@expo/vector-icons/AntDesign';
-
 
 
 //STACK 1
@@ -53,7 +51,7 @@ const BScreen1 = ()=>{
   return (
     <View style={[styles.screen1]}>
       <TouchableOpacity title="Enviar" style={styles.button} onPress={() => navigation.navigate('B2')} >
-        <Text style={styles.textButton}>Cambiar de vista</Text>
+        <Text style={styles.textButton}>Cambiar de página</Text>
       </TouchableOpacity>
     </View>
   );
@@ -63,7 +61,7 @@ const BScreen2 = () =>{
   return (
     <View style={[styles.screen1]}>
       <TouchableOpacity title="Enviar" style={styles.button} onPress={() => navigation.navigate('B1')} >
-        <Text style={styles.textButton}>Volver a la vista anterior</Text>
+        <Text style={styles.textButton}>Volver a la página anterior</Text>
       </TouchableOpacity>
     </View>
   );
@@ -75,7 +73,7 @@ const CScreen1 = ()=>{
   return (
     <View style={[styles.screen2]}>
       <TouchableOpacity title="Enviar" style={styles.button} onPress={() => navigation.navigate('C2')} >
-        <Text style={styles.textButton}>Cambiar de vista</Text>
+        <Text style={styles.textButton}>Cambiar de página</Text>
       </TouchableOpacity>
     </View>
   );
@@ -86,7 +84,7 @@ const CScreen2 = () =>{
   return (
     <View style={[styles.screen2]}>
       <TouchableOpacity title="Enviar" style={styles.button} onPress={() => navigation.navigate('C1')} >
-        <Text style={styles.textButton}>Volver a la vista anterior</Text>
+        <Text style={styles.textButton}>Volver a la página anterior</Text>
       </TouchableOpacity>
     </View>
   );
@@ -97,7 +95,7 @@ const DScreen1 = () =>{
   return (
     <View style={[styles.screen3]}>
       <TouchableOpacity title="Enviar" style={styles.button} onPress={() => navigation.navigate('D2')} >
-        <Text style={styles.textButton}>Cambiar de vista</Text>
+        <Text style={styles.textButton}>Cambiar de página</Text>
       </TouchableOpacity>
     </View>
   );
@@ -107,7 +105,7 @@ const DScreen2 = () =>{
   return (
     <View style={[styles.screen3]}>
       <TouchableOpacity title="Enviar" style={styles.button} onPress={() => navigation.navigate('D1')} >
-        <Text style={styles.textButton}>Volver a la vista anterior</Text>
+        <Text style={styles.textButton}>Volver a la página anterior</Text>
       </TouchableOpacity>
     </View>
   );
