@@ -11,15 +11,21 @@ import { Ionicons } from '@expo/vector-icons';
 const HomeScreen1 = () =>{
   const navigation = useNavigation();
   const [texto, setTexto] = useState();
-  const update = (e) =>{
+  const [telefono, setTelefono] = useState();
+  const updateNombre = (e) =>{
     setTexto(e.nativeEvent.text);
+  }
+  const updateTelefono = (e) =>{
+    setTelefono(e.nativeEvent.text);
   }
   return(
     <View style={[styles.homeView]}>
       <Image source={require('./assets/graphicDesign.jpg')} style={{width:300, height:200, marginBottom:40, marginTop:40}}/>
-      <Text>Hablale a Pepito</Text>
-      <TextInput onChange={update} placeholder="Ingrese un texto" style={[styles.input, {margin: 5}]}/> 
-      <TouchableOpacity title="Enviar" style={styles.button} onPress={() => navigation.navigate('Home2', {sendTexto: texto})} >
+      <Text style={styles.texto}>Ingrese su nombre</Text>
+      <TextInput onChange={updateNombre} placeholder="Ingrese su nombre" style={[styles.input, {margin: 5}]}/> 
+      <Text style={styles.texto}>Ingrese su teléfono</Text>
+      <TextInput onChange={updateTelefono} keyboardType= 'number-pad' placeholder="Ingrese su teléfono" style={[styles.input, {margin: 5}]}/> 
+      <TouchableOpacity title="Enviar" style={styles.button} onPress={() => navigation.navigate('Home2', {sendTexto: texto, sendTelefono:telefono})} >
         <Text style={styles.textButton}>Enviar</Text>
       </TouchableOpacity>
     </View>
@@ -30,7 +36,8 @@ const HomeScreen2 = ({route})=>{
   const navigation = useNavigation();
   return(
     <View style={[styles.homeView]}>
-      <Text style={{marginTop:250, fontSize:30}}>Hola, {route.params.sendTexto}!</Text>
+      <Text style={styles.texto}>Hola, {route.params.sendTexto}!</Text>
+      <Text style={styles.texto}>Tu número de teléfono es {route.params.sendTelefono}</Text>
       <TouchableOpacity title="Enviar" style={styles.button} onPress={() => navigation.navigate('Home1')} >
         <Text style={styles.textButton}>Volver a página anterior</Text>
       </TouchableOpacity>
@@ -174,10 +181,11 @@ const styles = StyleSheet.create({
   homeView:{
     backgroundColor:'cyan',
     height:'100%',
-    alignItems: 'center'
+    alignItems: 'center',
+    justifyContent:'center'
   },
   input:{
-    width:100,
+    width:200,
     backgroundColor:'white',
     borderRadius:5,
     borderBottomWidth : 1.0,
@@ -202,6 +210,10 @@ const styles = StyleSheet.create({
   textButton:{
     color:'white',
     textAlign: 'center'
+  },
+  texto:{
+    fontSize:20,
+    fontFamily: 'Courier'
   },
   screen1:{
     backgroundColor: 'blue',
